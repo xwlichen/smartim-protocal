@@ -1,0 +1,13 @@
+syntax = "proto3";
+option java_outer_classname = "MessageTypeEntity"; //生成的数据访问类的类名
+option java_package = "com.smart.im.protocal.proto"; //生成的数据访问类的package
+enum MessageType {
+    TXT = 0;             // 文本
+    EMOJI = 1;           // 表情
+    PIC = 2;             // 图片
+    AUDIO = 3;           // 音频
+    VIDEO = 4;           // 视频
+    FILE = 5;            // 文件
+    SHARE = 6;           // 分享
+    NEW = 7;             // 新闻
+}

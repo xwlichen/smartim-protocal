@@ -1,0 +1,14 @@
+syntax = "proto3";
+option java_outer_classname = "ProtocalTypeEntity"; //生成的数据访问类的类名
+option java_package = "com.smart.im.protocal.proto"; //生成的数据访问类的package
+enum ProtocalType {
+    DISCONNET = 0; //断开连接
+    CONNECT = 1; //连接
+    CONNACK = 2; //连接回应
+    PUBLISH = 3; //发送
+    PUBACK = 4; //发送回应
+    PINGREQ = 5; //心跳请求
+    PINGRESP = 6; //心跳回应
+    ERRORESP = 7; //错误返回
+
+}
