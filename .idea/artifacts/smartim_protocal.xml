@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="smartim-protocal">
+    <output-path>$PROJECT_DIR$/out/artifacts/smartim_protocal</output-path>
+    <root id="archive" name="smartim-protocal.jar">
+      <element id="module-output" name="smartim-protrocal" />
+    </root>
+  </artifact>
+</component>
