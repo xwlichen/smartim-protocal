@@ -18,8 +18,6 @@ public class ProtocalFactory {
 
     public final static String SERVER_ID = "0";
 
-    private long workerId;      //工作ID (0~31)
-    private long datacenterId;  //数据中心ID (0~31)
 
 
     /**
@@ -52,10 +50,10 @@ public class ProtocalFactory {
 
 
     /**
-     * 创建连接
+     * 创建连接（登录）
      *
-     * @param userId
-     * @param data
+     * @param userId  用户id
+     * @param data  其他相关内容
      * @return
      */
     public static ProtocalEntity.Protocal createConnect(String userId, String data) {
@@ -71,8 +69,9 @@ public class ProtocalFactory {
 
     /**
      * 创建连接回应
-     *
-     * @param to_user_id
+     * @param to_user_id   目标用户ID
+     * @param data         相关内容
+     * @param fingerPrint  消息的ID
      * @return
      */
     public static ProtocalEntity.Protocal createConnAck(String to_user_id, String data,String fingerPrint) {
@@ -94,11 +93,11 @@ public class ProtocalFactory {
     /**
      * 创建发送信息
      *
-     * @param dataContent
-     * @param from_user_id
-     * @param to_user_id
-     * @param QoS
-     * @param fingerPrint
+     * @param dataContent     相关内容
+     * @param from_user_id    来源用户ID
+     * @param to_user_id      目标用户ID
+     * @param QoS             是否心跳
+     * @param fingerPrint     消息ID
      * @param typeu
      * @return
      */
@@ -120,25 +119,34 @@ public class ProtocalFactory {
 
 
     /**
-     * 创建发送回应
+     * 创建发送消息回应
      *
-     * @param from_user_id
-     * @param to_user_id
-     * @param recievedMessageFingerPrint
+     * @param from_user_id       来源用户ID
+     * @param to_user_id         目标用户ID
+     * @param fingerPrint        消息ID
      * @return
      */
     public static ProtocalEntity.Protocal createPubAck(String from_user_id, String to_user_id
-            , String recievedMessageFingerPrint) {
-        return createPubAck(from_user_id, to_user_id, recievedMessageFingerPrint, false);
+            , String fingerPrint) {
+        return createPubAck(from_user_id, to_user_id, fingerPrint, false);
     }
 
+
+    /**
+     * 创建发送消息回应
+     * @param from_user_id   来源用户ID
+     * @param to_user_id     目标用户ID
+     * @param fingerPrint    消息ID
+     * @param bridge         是否桥接跨域
+     * @return
+     */
     public static ProtocalEntity.Protocal createPubAck(String from_user_id, String to_user_id
-            , String recievedMessageFingerPrint, boolean bridge) {
+            , String fingerPrint, boolean bridge) {
 
 
         ProtocalEntity.Protocal.Builder builder = ProtocalEntity.Protocal.newBuilder();
         builder.setProtocalType(ProtocalTypeEntity.ProtocalType.PUBACK);
-        builder.setDataContent(recievedMessageFingerPrint);
+        builder.setDataContent(fingerPrint);
         builder.setFrom(from_user_id);
         builder.setTo(to_user_id);
         builder.setId(ProtocalEntity.Protocal.getDefaultInstance().getId());
@@ -150,9 +158,9 @@ public class ProtocalFactory {
     }
 
     /**
-     * 创建心跳回应
-     *
-     * @param from_user_id
+     * 创建心跳请求
+     * @param from_user_id   来源用户ID
+     * @param data           相关内容
      * @return
      */
     public static ProtocalEntity.Protocal createPingReq(String from_user_id, String data) {
@@ -168,8 +176,8 @@ public class ProtocalFactory {
 
     /**
      * 创建心跳回应
-     *
-     * @param to_user_id
+     * @param to_user_id  目标用户ID
+     * @param data        相关内容
      * @return
      */
     public static ProtocalEntity.Protocal createPingResp(String to_user_id, String data) {
@@ -186,8 +194,8 @@ public class ProtocalFactory {
     /**
      * 创建错误返回
      *
-     * @param to_user_id
-     * @param data
+     * @param to_user_id   目标用户ID
+     * @param data         相关内容
      * @return
      */
     public static ProtocalEntity.Protocal createErrorResp(String to_user_id, String data) {
@@ -205,7 +213,7 @@ public class ProtocalFactory {
     /**
      * 创建断开连接
      *
-     * @param from_user_id
+     * @param from_user_id  来源用户ID
      * @return
      */
     public static ProtocalEntity.Protocal createDisConnect(String from_user_id) {
