@@ -1,5 +1,5 @@
 syntax = "proto3";
-option java_outer_classname = "MessageProtocal"; //生成的数据访问类的类名
+option java_outer_classname = "MessageProtocalEntity"; //生成的数据访问类的类名
 option java_package = "com.smart.im.protocal.proto"; //生成的数据访问类的package
 import "protocal_type.proto";
 import "message_type.proto";
@@ -21,5 +21,5 @@ message Header{
     int32 typeu = 9;             //
     int32 retryCount = 10;         // 重试次数
     sint64 timestamp=11;                //服务器接收到消息的时间
-    string extend=12        //扩展字段，以key/value形式存放的json
+    string extend=12;       //扩展字段，以key/value形式存放的json
 }
