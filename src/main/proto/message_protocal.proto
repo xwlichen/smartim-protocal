@@ -1,5 +1,5 @@
 syntax = "proto3";
-option java_outer_classname = "MessageProtocalEntity"; //生成的数据访问类的类名
+option java_outer_classname = "MessageProtocal"; //生成的数据访问类的类名
 option java_package = "com.smart.im.protocal.proto"; //生成的数据访问类的package
 import "protocal_type.proto";
 import "message_type.proto";
