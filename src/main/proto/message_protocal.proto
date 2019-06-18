@@ -1,0 +1,25 @@
+syntax = "proto3";
+option java_outer_classname = "MessageProtocalEntity"; //生成的数据访问类的类名
+option java_package = "com.smart.im.protocal.proto"; //生成的数据访问类的package
+import "protocal_type.proto";
+import "message_type.proto";
+message Protocal {
+    Header header=1;       // 消息头
+    string body = 2;       // 消息体
+
+}
+
+message Header{
+    string id = 1;               //唯一识别（可以帮助客户端去重）
+    bool bridge = 2;               // 跨端桥接
+    ProtocalType protocalType = 3;         // 协议类型
+    MessageType messageType=4;      //消息类型
+    string from = 5;              //谁发的
+    string to = 6;               //发给谁
+    string groupId=7;              //群id
+    bool qoS = 8;                //心跳
+    int32 typeu = 9;             //
+    int32 retryCount = 10;         // 重试次数
+    sint64 timestamp=11;                //服务器接收到消息的时间
+    string extend=12        //扩展字段，以key/value形式存放的json
+}
